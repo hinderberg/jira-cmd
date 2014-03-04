@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var auth = require('./helpers/auth');
+
+var config = require('../lib/config');
+var jira = require('../lib/jira');
+
+var issuesLogger = require('../lib/log/issues');
+
+program
+    .command('issues')
+    .option('-p, --project <name>', 'Defines project', String, config.defaultProject)
+    .option('-v, --fixVersion <fix version>', 'Defines fixed version', String, config.defaultVersion)
+    .action(function (options) {
+        auth.setConfig(function (auth) {
+            if (auth) {
+                options.assignee = config.auth.user;
+                jira.filterBy(options, issuesLogger.issues);
+            }
+        });
+    });
+
+/* Setup */
+
+program
+    .version('v0.0.1')
+    .parse(process.argv);
+
+if (program.args.length === 0) {
+    auth.setConfig(function (auth) {
+        if (auth) {
+            program.help();
+        }
+    });
+}
