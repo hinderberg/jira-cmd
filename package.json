@@ -10,7 +10,10 @@
   "bin" : {
     "jira": "./bin/jira"
   },
-  "repository": "https://github.com/hinderberg/jira-node",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:hinderberg/jira-node.git"
+  },
   "author": "Hans Magnus Inderberg",
   "license": "MIT",
   "readmeFilename": "README.md",
