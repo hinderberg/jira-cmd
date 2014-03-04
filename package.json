@@ -1,5 +1,5 @@
 {
-  "name": "jira-node",
+  "name": "jira-cmd",
   "version": "0.0.1",
   "description": "JIRA in the command-line",
   "keywords": [
