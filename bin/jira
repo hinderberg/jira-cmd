@@ -28,7 +28,7 @@ program
 
 program
     .command('issue <id>')
-    .description('Issue detail.')
+    .description('Issue detail')
     .action(function (id) {
         auth.setConfig(function (auth) {
             if (auth) {
