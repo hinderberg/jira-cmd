@@ -28,38 +28,38 @@ program
 
 
 program
-    .command('issue <id>')
+    .command('issue <issueId>')
     .description('Issue detail')
-    .action(function (id) {
+    .action(function (issueId) {
         auth.setConfig(function (auth) {
             if (auth) {
-                jira.issue(id, issuesLogger.issue);
+                jira.issue(issueId, issuesLogger.issue);
             }
         });
     });
 
 program
-    .command('assign <id> <userId>')
+    .command('assign <issueId> <userId>')
     .description('Assign issue')
-    .action(function (id, userId) {
+    .action(function (issueId, userId) {
         auth.setConfig(function (auth) {
             if (auth) {
                 userId = userId || config.auth.user;
 
-                jira.assign(id, userId, issuesLogger.assign);
+                jira.assign(issueId, userId, issuesLogger.assign);
             }
         });
     });
 
 
 program
-    .command('field <id> <name>')
+    .command('field <issueId> <name>')
     .description('Get value for field on issue')
-    .action(function (id, name) {
+    .action(function (issueId, name) {
 
         auth.setConfig(function (auth) {
             if (auth) {
-                jira.getFieldValueOnIssue(id, name, issuesLogger.field);
+                jira.getFieldValueOnIssue(issueId, name, issuesLogger.field);
             }
         })
 
@@ -83,7 +83,7 @@ program
 
 program
     .command('search <term>')
-    .description('Find issues.')
+    .description('Find issues')
     .action(function (query) {
         auth.setConfig(function (auth) {
             if (auth) {
