@@ -8,6 +8,7 @@ var jira = require('../lib/jira');
 
 var issuesLogger = require('../lib/log/issues');
 var versionsLogger = require('../lib/log/versions');
+var usersLogger = require('../lib/log/users');
 
 /* Issues */
 
@@ -91,15 +92,25 @@ program
         });
     });
 
+/* Users */
+
 program
-    .command('assign <id> <userId>')
-    .description('Assign issue')
-    .action(function (id, userId) {
+    .command('assignable')
+    .description('Get all users in a project')
+    .option('-p, --project <id>', 'Defines project', String, config.defaultProject)
+    .option('-u, --user <name>', 'Defines username', String)
+    .option('-i, --issue <id>', 'Defines issue id', String)
+    .action(function (options) {
         auth.setConfig(function (auth) {
             if (auth) {
-                userId = userId || config.auth.user;
+                jira.project(options.project, function(err, result) {
+                    if (err) {
+                        return console.log(err);
+                    }
 
-                jira.assign(id, userId, issuesLogger.assign);
+                    options.project = result.key;
+                    jira.assignable(options, usersLogger.users);
+                });
             }
         });
     });
