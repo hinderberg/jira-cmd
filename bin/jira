@@ -7,7 +7,7 @@ var config = require('../lib/config');
 var jira = require('../lib/jira');
 
 var issuesLogger = require('../lib/log/issues');
-var versionsLogger = require('../lib/log/versions');
+var projectLogger = require('../lib/log/project');
 var usersLogger = require('../lib/log/users');
 
 /* Issues */
@@ -115,17 +115,17 @@ program
         });
     });
 
-/* Versions */
+/* Project */
 
 program
     .command('versions')
-    .description('List all versions for project.')
+    .description('List all versions for project')
     .option('-p, --project <name>', 'Filter by project', String)
     .action(function (options) {
         auth.setConfig(function (auth) {
             if (auth) {
                 var project = options.project || config.defaultProject;
-                jira.versions(project, versionsLogger.versions);
+                jira.versions(project, projectLogger.versions);
             }
         });
     });
