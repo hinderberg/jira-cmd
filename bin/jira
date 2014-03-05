@@ -55,9 +55,9 @@ program
 program
     .command('field <id> <name>')
     .description('Get value for field on issue')
-    .action(function(id, name) {
+    .action(function (id, name) {
 
-        auth.setConfig(function(auth) {
+        auth.setConfig(function (auth) {
             if (auth) {
                 jira.getFieldValueOnIssue(id, name, issuesLogger.field);
             }
@@ -103,7 +103,7 @@ program
     .action(function (options) {
         auth.setConfig(function (auth) {
             if (auth) {
-                jira.project(options.project, function(err, result) {
+                jira.project(options.project, function (err, result) {
                     if (err) {
                         return console.log(err);
                     }

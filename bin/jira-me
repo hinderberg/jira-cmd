@@ -10,6 +10,7 @@ var issuesLogger = require('../lib/log/issues');
 
 program
     .command('issues')
+    .description('list issues for logged in user')
     .option('-p, --project <name>', 'Defines project', String, config.defaultProject)
     .option('-v, --fixVersion <fix version>', 'Defines fixed version', String, config.defaultVersion)
     .action(function (options) {
@@ -20,6 +21,18 @@ program
             }
         });
     });
+
+program
+    .command('assign <id>')
+    .description('Assign issue to logged in user')
+    .action(function (id) {
+        auth.setConfig(function (auth) {
+            if (auth) {
+                jira.assign(id, config.auth.user, issuesLogger.assign);
+            }
+        });
+    });
+
 
 /* Setup */
 
