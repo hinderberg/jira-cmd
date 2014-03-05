@@ -38,6 +38,33 @@ program
     });
 
 program
+    .command('assign <id> <userId>')
+    .description('Assign issue')
+    .action(function (id, userId) {
+        auth.setConfig(function (auth) {
+            if (auth) {
+                userId = userId || config.auth.user;
+
+                jira.assign(id, userId, issuesLogger.assign);
+            }
+        });
+    });
+
+
+program
+    .command('field <id> <name>')
+    .description('Get value for field on issue')
+    .action(function(id, name) {
+
+        auth.setConfig(function(auth) {
+            if (auth) {
+                jira.getFieldValueOnIssue(id, name, issuesLogger.field);
+            }
+        })
+
+    });
+
+program
     .command('filter')
     .description('issues actions')
     .option('-p, --project <id>', 'Defines project', String, config.defaultProject)
