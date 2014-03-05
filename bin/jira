@@ -92,6 +92,29 @@ program
         });
     });
 
+
+program
+    .command('comment <issueId> [text]')
+    .description('Comment an issue')
+    .action(function (issueId, text) {
+        auth.setConfig(function (auth) {
+            if (auth) {
+              jira.comment(issueId, text, issuesLogger.comment);
+            }
+        });
+    });
+
+program
+    .command('comments <issueId>')
+    .description('Show comments on a issue')
+    .action(function (issueId) {
+        auth.setConfig(function (auth) {
+            if (auth) {
+                jira.showComments(issueId, issuesLogger.showComments);
+            }
+        });
+    });
+
 /* Users */
 
 program
