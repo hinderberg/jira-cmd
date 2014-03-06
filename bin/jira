@@ -94,7 +94,7 @@ program
 
 
 program
-    .command('comment <issueId> [text]')
+    .command('comment <issueId> <text>')
     .description('Comment an issue')
     .action(function (issueId, text) {
         auth.setConfig(function (auth) {
