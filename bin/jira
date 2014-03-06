@@ -115,6 +115,18 @@ program
         });
     });
 
+program
+    .command('transitions <issueId>')
+    .description('Show available transitions for issue with id')
+    .action(function (issueId) {
+        auth.setConfig(function (auth) {
+            if (auth) {
+                jira.listTransitions(issueId, issuesLogger.transitions);
+            }
+        });
+    });
+
+
 /* Users */
 
 program
