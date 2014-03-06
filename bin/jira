@@ -126,6 +126,16 @@ program
         });
     });
 
+program
+    .command('transition <issueId> <transitionId>')
+    .description('Do transition for issue with id')
+    .action(function (issueId, transitionId) {
+        auth.setConfig(function (auth) {
+            if (auth) {
+                jira.transition(issueId, transitionId, issuesLogger.transition);
+            }
+        });
+    });
 
 /* Users */
 
