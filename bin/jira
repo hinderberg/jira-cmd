@@ -28,45 +28,6 @@ program
         });
     });
 
-
-program
-    .command('issue <issueId>')
-    .description('Issue detail')
-    .action(function (issueId) {
-        auth.setConfig(function (auth) {
-            if (auth) {
-                jira.issue(issueId, issuesLogger.issue);
-            }
-        });
-    });
-
-program
-    .command('assign <issueId> <userId>')
-    .description('Assign issue')
-    .action(function (issueId, userId) {
-        auth.setConfig(function (auth) {
-            if (auth) {
-                userId = userId || config.auth.user;
-
-                jira.assign(issueId, userId, issuesLogger.assign);
-            }
-        });
-    });
-
-
-program
-    .command('field <issueId> <name>')
-    .description('Get value for field on issue')
-    .action(function (issueId, name) {
-
-        auth.setConfig(function (auth) {
-            if (auth) {
-                jira.getFieldValueOnIssue(issueId, name, issuesLogger.field);
-            }
-        })
-
-    });
-
 program
     .command('filter')
     .description('issues actions')
@@ -94,50 +55,6 @@ program
         });
     });
 
-
-program
-    .command('comment <issueId> <text>')
-    .description('Comment an issue')
-    .action(function (issueId, text) {
-        auth.setConfig(function (auth) {
-            if (auth) {
-              jira.comment(issueId, text, issuesLogger.comment);
-            }
-        });
-    });
-
-program
-    .command('comments <issueId>')
-    .description('Show comments on a issue')
-    .action(function (issueId) {
-        auth.setConfig(function (auth) {
-            if (auth) {
-                jira.showComments(issueId, issuesLogger.showComments);
-            }
-        });
-    });
-
-program
-    .command('transitions <issueId>')
-    .description('Show available transitions for issue with id')
-    .action(function (issueId) {
-        auth.setConfig(function (auth) {
-            if (auth) {
-                jira.listTransitions(issueId, issuesLogger.transitions);
-            }
-        });
-    });
-
-program
-    .command('transition <issueId> <transitionId>')
-    .description('Do transition for issue with id')
-    .action(function (issueId, transitionId) {
-        auth.setConfig(function (auth) {
-            if (auth) {
-                jira.transition(issueId, transitionId, issuesLogger.transition);
-            }
-        });
-    });
 
 /* Users */
 
@@ -204,6 +121,7 @@ program
 program
     .version('v0.0.1')
     .command('me', 'its all about you')
+    .command('issue', 'actions on a sigle issue')
     .parse(process.argv);
 
 
