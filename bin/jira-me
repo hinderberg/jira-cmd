@@ -2,9 +2,9 @@
 
 var program = require('commander');
 var auth = require('./helpers/auth');
-
 var config = require('../lib/config');
 var jira = require('../lib/jira');
+var zeroArgs = require('./helpers/zero-args');
 
 var issuesLogger = require('../lib/log/issues');
 
@@ -37,13 +37,6 @@ program
 /* Setup */
 
 program
-    .version('v0.0.1')
     .parse(process.argv);
 
-if (program.args.length === 0) {
-    auth.setConfig(function (auth) {
-        if (auth) {
-            program.help();
-        }
-    });
-}
+zeroArgs.run();

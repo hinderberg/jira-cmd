@@ -10,6 +10,8 @@ var issuesLogger = require('../lib/log/issues');
 var projectLogger = require('../lib/log/project');
 var usersLogger = require('../lib/log/users');
 
+var zeroArgs = require('./helpers/zero-args');
+
 /* Issues */
 
 program
@@ -204,10 +206,5 @@ program
     .command('me', 'its all about you')
     .parse(process.argv);
 
-if (program.args.length === 0) {
-    auth.setConfig(function (auth) {
-        if (auth) {
-            program.help();
-        }
-    });
-}
+
+zeroArgs.run();
