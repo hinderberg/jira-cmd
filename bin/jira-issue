@@ -62,9 +62,12 @@ program
         });
     });
 
+
+
 program
     .command('comments <issueId>')
     .description('Show comments on a issue')
+    .option('-c, --clear', 'Clear stored configuration')
     .action(function (issueId) {
         auth.setConfig(function (auth) {
             if (auth) {
