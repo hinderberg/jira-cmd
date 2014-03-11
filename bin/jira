@@ -7,7 +7,7 @@ var config = require('../lib/config');
 var jira = require('../lib/jira');
 
 var issuesLogger = require('../lib/log/issues');
-var projectLogger = require('../lib/log/project');
+var projectsLogger = require('../lib/log/projects');
 var usersLogger = require('../lib/log/users');
 
 var zeroArgs = require('./helpers/zero-args');
@@ -89,7 +89,7 @@ program
         auth.setConfig(function (auth) {
             if (auth) {
                 var project = options.project || config.defaultProject;
-                jira.versions(project, projectLogger.versions);
+                jira.versions(project, projectsLogger.versions);
             }
         });
     });
