@@ -35,8 +35,7 @@ exports.setConfig = function (callback) {
 };
 
 exports.clearConfig = function (callback) {
-    callback = callback || function () {
-    };
+    callback = callback || function () {};
 
     var schema = {
         properties: {
