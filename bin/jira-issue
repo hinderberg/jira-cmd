@@ -6,8 +6,9 @@ var auth = require('./helpers/auth');
 var config = require('../lib/config');
 var jira = require('../lib/jira');
 
+var create = require('./helpers/create');
+
 var issuesLogger = require('../lib/log/issues');
-var projectLogger = require('../lib/log/project');
 var usersLogger = require('../lib/log/users');
 
 var zeroArgs = require('./helpers/zero-args');
@@ -93,6 +94,37 @@ program
             }
         });
     });
+
+
+program
+    .command('create')
+    .description('Create issue')
+    .action(function () {
+        auth.setConfig(function (auth) {
+            if (auth) {
+                jira.meta({}, function(err, projects) {
+
+                    if (err) {
+                        return console.log("Could not create issue now");
+                    }
+
+                    jira.priorities(function(err, priorities){
+
+
+                        if (err) {
+                            return console.log("Could not create issue now");
+                        }
+
+                        create.prompt(projects, priorities);
+
+                    });
+
+
+                });
+            }
+        });
+    });
+
 
 /* Setup */
 
