@@ -72,6 +72,7 @@ var createFieldsSchema = exports.createFieldsSchema = function(fields, allowedFi
             }();
         }
 
+        //todo customfield_11490 has schema string, but jira fails - fix?
         schemaSub.properties[key].before = function(value) {
             switch (field.schema.type) {
                 case 'string':
