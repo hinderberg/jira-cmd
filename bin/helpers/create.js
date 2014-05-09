@@ -130,7 +130,7 @@ function createAllowedFieldsSchema(fields) {
     };
 
     for (var key in fields) {
-        if (key === 'issuetype' || key === 'project') {
+        if (key === 'issuetype' || key === 'project' || key === 'reporter') {
             continue;
         }
 
