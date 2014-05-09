@@ -1,31 +1,38 @@
 {
-  "name": "jira-cmd",
-  "version": "0.0.1",
-  "description": "JIRA in the command-line",
-  "keywords": [
-    "command",
-    "terminal",
-    "jira"
-  ],
-  "bin" : {
-    "jira": "./bin/jira"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:hinderberg/jira-node.git"
-  },
-  "author": "Hans Magnus Inderberg",
-  "license": "MIT",
-  "readmeFilename": "README.md",
-  "bugs": {
-    "url": "https://github.com/hinderberg/jira-node/issues"
-  },
-  "homepage": "https://github.com/hinderberg/jira-node",
-  "dependencies": {
-      "commander": "~2.1.0",
-      "superagent": "~0.16.0",
-      "cli-table": "~0.3.0",
-      "underscore": "~1.6.0",
-      "prompt": "~0.2.12"
-  }
+    "name": "jira-cmd",
+    "version": "0.0.1",
+    "description": "JIRA in the command-line",
+    "keywords": [
+        "command",
+        "terminal",
+        "jira"
+    ],
+    "bin": {
+        "jira": "./bin/jira"
+    },
+    "scripts": {
+        "test": "mocha"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:hinderberg/jira-node.git"
+    },
+    "author": "Hans Magnus Inderberg",
+    "license": "MIT",
+    "readmeFilename": "README.md",
+    "bugs": {
+        "url": "https://github.com/hinderberg/jira-node/issues"
+    },
+    "homepage": "https://github.com/hinderberg/jira-node",
+    "dependencies": {
+        "commander": "~2.1.0",
+        "superagent": "~0.16.0",
+        "cli-table": "~0.3.0",
+        "underscore": "~1.6.0",
+        "prompt": "~0.2.12"
+    },
+    "devDependencies": {
+        "mocha": "~1.18.2",
+        "chai": "~1.9.1"
+    }
 }

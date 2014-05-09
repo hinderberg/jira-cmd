@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var program = require('commander');
-var auth = require('./helpers/auth');
+var fileConfig = require('./helpers/fileConfig');
 
 var config = require('../lib/config');
 var jira = require('../lib/jira');
@@ -17,8 +17,8 @@ program
     .command('detail <issueId>')
     .description('Issue detail')
     .action(function (issueId) {
-        auth.setConfig(function (auth) {
-            if (auth) {
+        fileConfig.setConfig(function (fileConfig) {
+            if (fileConfig) {
                 jira.issue(issueId, issuesLogger.issue);
             }
         });
@@ -28,9 +28,9 @@ program
     .command('assign <issueId> <userId>')
     .description('Assign issue')
     .action(function (issueId, userId) {
-        auth.setConfig(function (auth) {
-            if (auth) {
-                userId = userId || config.auth.user;
+        fileConfig.setConfig(function (fileConfig) {
+            if (fileConfig) {
+                userId = userId || config.fileConfig.user;
 
                 jira.assign(issueId, userId, issuesLogger.assign);
             }
@@ -43,8 +43,8 @@ program
     .description('Get value for field on issue')
     .action(function (issueId, name) {
 
-        auth.setConfig(function (auth) {
-            if (auth) {
+        fileConfig.setConfig(function (fileConfig) {
+            if (fileConfig) {
                 jira.getFieldValueOnIssue(issueId, name, issuesLogger.field);
             }
         })
@@ -55,8 +55,8 @@ program
     .command('comment <issueId> <text>')
     .description('Comment an issue')
     .action(function (issueId, text) {
-        auth.setConfig(function (auth) {
-            if (auth) {
+        fileConfig.setConfig(function (fileConfig) {
+            if (fileConfig) {
               jira.comment(issueId, text, issuesLogger.comment);
             }
         });
@@ -69,8 +69,8 @@ program
     .description('Show comments on a issue')
     .option('-c, --clear', 'Clear stored configuration')
     .action(function (issueId) {
-        auth.setConfig(function (auth) {
-            if (auth) {
+        fileConfig.setConfig(function (fileConfig) {
+            if (fileConfig) {
                 jira.showComments(issueId, issuesLogger.showComments);
             }
         });
@@ -80,8 +80,8 @@ program
     .command('transitions <issueId>')
     .description('Show available transitions for issue with id')
     .action(function (issueId) {
-        auth.setConfig(function (auth) {
-            if (auth) {
+        fileConfig.setConfig(function (fileConfig) {
+            if (fileConfig) {
                 jira.listTransitions(issueId, issuesLogger.transitions);
             }
         });
@@ -91,8 +91,8 @@ program
     .command('transition <issueId> <transitionId>')
     .description('Do transition for issue with id')
     .action(function (issueId, transitionId) {
-        auth.setConfig(function (auth) {
-            if (auth) {
+        fileConfig.setConfig(function (fileConfig) {
+            if (fileConfig) {
                 jira.transition(issueId, transitionId, issuesLogger.transition);
             }
         });
@@ -102,28 +102,11 @@ program
 program
     .command('create')
     .description('Create issue')
-    .action(function () {
-        auth.setConfig(function (auth) {
-            if (auth) {
-                jira.meta({}, function(err, projects) {
-
-                    if (err) {
-                        return console.log("Could not create issue now");
-                    }
-
-                    jira.priorities(function(err, priorities){
-
-
-                        if (err) {
-                            return console.log("Could not create issue now");
-                        }
-
-                        create.prompt(projects, priorities);
-
-                    });
-
-
-                });
+    .option('-p, --project <name>', 'Defines project', String, config.fileConfig.defaultProject)
+    .action(function (options) {
+        fileConfig.setConfig(function (fileConfig) {
+            if (fileConfig) {
+                create.prompt(options);
             }
         });
     });

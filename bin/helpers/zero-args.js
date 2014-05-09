@@ -1,10 +1,10 @@
 var program = require('commander');
-var auth = require('./auth');
+var fileConfig = require('./fileConfig');
 
 exports.run = function() {
     if (program.args.length === 0) {
-        auth.setConfig(function (auth) {
-            if (auth) {
+        fileConfig.setConfig(function (fileConfig) {
+            if (fileConfig) {
                 program.help();
             }
         });

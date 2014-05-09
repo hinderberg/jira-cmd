@@ -1,22 +1,21 @@
 #!/usr/bin/env node
 
 var program = require('commander');
-var auth = require('./helpers/auth');
+var fileConfig = require('./helpers/fileConfig');
 var config = require('../lib/config');
 var jira = require('../lib/jira');
 var zeroArgs = require('./helpers/zero-args');
-
 var issuesLogger = require('../lib/log/issues');
 
 program
     .command('issues')
     .description('list issues for logged in user')
-    .option('-p, --project <name>', 'Defines project', String, config.defaultProject)
-    .option('-v, --fixVersion <fix version>', 'Defines fixed version', String, config.defaultVersion)
+    .option('-p, --project <name>', 'Defines project', String, config.fileConfig.defaultProject)
+    .option('-v, --fixVersion <fix version>', 'Defines fixed version', String, config.fileConfig.defaultVersion)
     .action(function (options) {
-        auth.setConfig(function (auth) {
-            if (auth) {
-                options.assignee = config.auth.user;
+        fileConfig.setConfig(function (fileConfig) {
+            if (fileConfig) {
+                options.assignee = config.fileConfig.user;
                 jira.filterBy(options, issuesLogger.issues);
             }
         });
@@ -26,9 +25,9 @@ program
     .command('assign <id>')
     .description('Assign issue to logged in user')
     .action(function (id) {
-        auth.setConfig(function (auth) {
-            if (auth) {
-                jira.assign(id, config.auth.user, issuesLogger.assign);
+        fileConfig.setConfig(function (fileConfig) {
+            if (fileConfig) {
+                jira.assign(id, config.fileConfig.user, issuesLogger.assign);
             }
         });
     });

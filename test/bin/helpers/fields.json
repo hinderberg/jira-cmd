@@ -1,0 +1,290 @@
+{
+    "summary": {
+        "required": true,
+        "schema": {
+            "type": "string",
+            "system": "summary"
+        },
+        "name": "Summary",
+        "hasDefaultValue": false,
+        "operations": [
+            "set"
+        ]
+    },
+    "timetracking": {
+        "required": false,
+        "schema": {
+            "type": "timetracking",
+            "system": "timetracking"
+        },
+        "name": "Time Tracking",
+        "hasDefaultValue": false,
+        "operations": [
+            "set",
+            "edit"
+        ]
+    },
+    "issuetype": {
+        "required": true,
+        "schema": {
+            "type": "issuetype",
+            "system": "issuetype"
+        },
+        "name": "Issue Type",
+        "hasDefaultValue": false,
+        "operations": [],
+        "allowedValues": [
+            {
+                "self": "",
+                "id": "2",
+                "description": "A new feature of the product, which has yet to be developed.",
+                "iconUrl": "",
+                "name": "New Feature",
+                "subtask": false
+            }
+        ]
+    },
+    "customfield_11490": {
+        "required": false,
+        "schema": {
+            "type": "string",
+            "custom": "com.atlassian.jira.plugin.system.customfieldtypes:select",
+            "customId": 11490
+        },
+        "name": "Application",
+        "hasDefaultValue": false,
+        "operations": [
+            "set"
+        ],
+        "allowedValues": [
+            {
+                "self": "",
+                "value": "Some App",
+                "id": "11530"
+            }
+        ]
+    },
+    "fixVersions": {
+        "required": false,
+        "schema": {
+            "type": "array",
+            "items": "version",
+            "system": "fixVersions"
+        },
+        "name": "Fix Version/s",
+        "hasDefaultValue": false,
+        "operations": [
+            "set",
+            "add",
+            "remove"
+        ],
+        "allowedValues": [
+            {
+                "self": "https://jira.test.no/rest/api/2/version/12956",
+                "id": "12956",
+                "name": "3.1.1",
+                "archived": false,
+                "released": false,
+                "releaseDate": "2014-04-28",
+                "overdue": true,
+                "userReleaseDate": "28/Apr/14",
+                "projectId": 12010
+            }
+        ]
+    },
+    "reporter": {
+        "required": false,
+        "schema": {
+            "type": "user",
+            "system": "reporter"
+        },
+        "name": "Reporter",
+        "autoCompleteUrl": "",
+        "hasDefaultValue": false,
+        "operations": [
+            "set"
+        ]
+    },
+    "customfield_11593": {
+        "required": false,
+        "schema": {
+            "type": "string",
+            "custom": "com.atlassian.jira.plugin.system.customfieldtypes:textfield",
+            "customId": 11593
+        },
+        "name": "Forretningsområde",
+        "hasDefaultValue": false,
+        "operations": [
+            "set"
+        ]
+    },
+    "description": {
+        "required": false,
+        "schema": {
+            "type": "string",
+            "system": "description"
+        },
+        "name": "Description",
+        "hasDefaultValue": false,
+        "operations": [
+            "set"
+        ]
+    },
+    "priority": {
+        "required": false,
+        "schema": {
+            "type": "priority",
+            "system": "priority"
+        },
+        "name": "Priority",
+        "hasDefaultValue": true,
+        "operations": [
+            "set"
+        ],
+        "allowedValues": [
+            {
+                "self": "",
+                "iconUrl": "",
+                "name": "Blocker",
+                "id": "1"
+            }
+        ]
+    },
+    "duedate": {
+        "required": false,
+        "schema": {
+            "type": "date",
+            "system": "duedate"
+        },
+        "name": "Due Date",
+        "hasDefaultValue": false,
+        "operations": [
+            "set"
+        ]
+    },
+    "customfield_10597": {
+        "required": false,
+        "schema": {
+            "type": "string",
+            "custom": "com.atlassian.jira.plugin.system.customfieldtypes:textfield",
+            "customId": 10597
+        },
+        "name": "External reference",
+        "hasDefaultValue": false,
+        "operations": [
+            "set"
+        ]
+    },
+    "labels": {
+        "required": false,
+        "schema": {
+            "type": "array",
+            "items": "string",
+            "system": "labels"
+        },
+        "name": "Labels",
+        "autoCompleteUrl": "",
+        "hasDefaultValue": false,
+        "operations": [
+            "add",
+            "set",
+            "remove"
+        ]
+    },
+    "assignee": {
+        "required": false,
+        "schema": {
+            "type": "user",
+            "system": "assignee"
+        },
+        "name": "Assignee",
+        "autoCompleteUrl": "",
+        "hasDefaultValue": false,
+        "operations": [
+            "set"
+        ]
+    },
+    "project": {
+        "required": true,
+        "schema": {
+            "type": "project",
+            "system": "project"
+        },
+        "name": "Project",
+        "hasDefaultValue": false,
+        "operations": [
+            "set"
+        ],
+        "allowedValues": [
+            {
+                "self": "",
+                "id": "12010",
+                "key": "DA",
+                "name": "Forvaltning"
+            }
+        ]
+    },
+    "versions": {
+        "required": false,
+        "schema": {
+            "type": "array",
+            "items": "version",
+            "system": "versions"
+        },
+        "name": "Affects Version/s",
+        "hasDefaultValue": false,
+        "operations": [
+            "set",
+            "add",
+            "remove"
+        ],
+        "allowedValues": [
+            {
+                "self": "",
+                "id": "12956",
+                "name": "3.1.0",
+                "archived": false,
+                "released": false,
+                "releaseDate": "2014-04-28",
+                "overdue": true,
+                "userReleaseDate": "28/Apr/14",
+                "projectId": 12010
+            }
+        ]
+    },
+    "environment": {
+        "required": false,
+        "schema": {
+            "type": "string",
+            "system": "environment"
+        },
+        "name": "Environment",
+        "hasDefaultValue": false,
+        "operations": [
+            "set"
+        ]
+    },
+    "components": {
+        "required": false,
+        "schema": {
+            "type": "array",
+            "items": "component",
+            "system": "components"
+        },
+        "name": "Component/s",
+        "hasDefaultValue": false,
+        "operations": [
+            "add",
+            "set",
+            "remove"
+        ],
+        "allowedValues": [
+            {
+                "self": "",
+                "id": "12282",
+                "name": ".Annet"
+            }
+        ]
+    }
+
+}
